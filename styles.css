@@ -17,6 +17,10 @@ body {
 body[data-theme="sunset"]{ --bg1:#ffd194; --bg2:#ff9a56; --bg3:#ff6a88; --card:#fff6ef; --border:#d99873; --primary:#ff8c42; --primary2:#e8590c; --text:#4a2c1a; --muted:#b07a52; --accent:#d6336c; }
 /* 主题：星夜 */
 body[data-theme="night"]{ --bg1:#0f2027; --bg2:#203a43; --bg3:#2c5364; --card:#1c2b33; --border:#3d5a64; --primary:#4dd0e1; --primary2:#0097a7; --text:#e0f7fa; --muted:#7fb0bb; --accent:#ffd54f; }
+/* 主题：樱花 */
+body[data-theme="cherry"]{ --bg1:#ffd9e8; --bg2:#ffb3d1; --bg3:#ff8fb3; --card:#fff5f9; --border:#e89bbd; --primary:#ff7eb3; --primary2:#e75480; --text:#7a2e4d; --muted:#c77a9b; --accent:#d6336c; }
+/* 主题：雪夜 */
+body[data-theme="snow"]{ --bg1:#e8f4fb; --bg2:#bcdcef; --bg3:#8fb8d6; --card:#f7fcff; --border:#9cc3dd; --primary:#5b9bd5; --primary2:#2e75b6; --text:#234a63; --muted:#6b94ad; --accent:#1f6fb2; }
 
 /* 漂浮树叶 / 星星 */
 .leaves { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
@@ -78,6 +82,10 @@ input {
   font-size: 14px; outline: none; background: transparent; color: var(--text); transition: .2s;
 }
 input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(124,179,66,.25); }
+input.input-error { border-color: #e53935; box-shadow: 0 0 0 3px rgba(229,57,53,.18); animation: shake .3s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+.form-msg { font-size: 12px; color: #e53935; min-height: 16px; margin: -4px 0 2px; text-align: left; }
+.form-msg.ok { color: #43a047; }
 
 .row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
 .remember { flex-direction: row; align-items: center; gap: 6px; color: var(--muted); }

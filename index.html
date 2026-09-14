@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- 漂浮的树叶装饰 -->
+  <!-- 漂浮装饰（随主题变化） -->
   <div class="leaves">
     <span>🌿</span><span>🍃</span><span>🌰</span><span>🍂</span><span>🌲</span>
   </div>
@@ -15,7 +15,6 @@
   <!-- 登录 / 注册 视图 -->
   <div id="auth-view" class="auth-wrap">
     <div class="auth-card">
-      <!-- 两只熊 -->
       <div class="bears">
         <div class="bear bear-big">🐻</div>
         <div class="bear bear-small">🐻‍❄️</div>
@@ -26,10 +25,13 @@
         <p class="slogan">和熊大熊二一起守护狗熊岭</p>
       </div>
 
+      <!-- 风格切换：多主题 -->
       <div class="theme-switch">
         <button class="theme-btn active" data-theme="forest">🌞 清晨</button>
         <button class="theme-btn" data-theme="sunset">🌇 黄昏</button>
         <button class="theme-btn" data-theme="night">🌙 星夜</button>
+        <button class="theme-btn" data-theme="cherry">🌸 樱花</button>
+        <button class="theme-btn" data-theme="snow">❄️ 雪夜</button>
       </div>
 
       <div class="tabs">
@@ -38,15 +40,16 @@
       </div>
 
       <!-- 登录表单 -->
-      <form id="login-form" class="form active" autocomplete="off">
+      <form id="login-form" class="form active" autocomplete="off" novalidate>
         <label>森林昵称
-          <input type="text" name="account" placeholder="例如：熊大 / 熊二 / 光头强" required />
+          <input type="text" name="account" placeholder="例如：熊大 / 熊二 / 光头强" />
         </label>
         <label>密码
-          <input type="password" name="password" placeholder="请输入密码" required />
+          <input type="password" name="password" placeholder="请输入密码" />
         </label>
+        <p class="form-msg" id="login-msg"></p>
         <div class="row">
-          <label class="remember"><input type="checkbox" name="remember" /> 记住我</label>
+          <label class="remember"><input type="checkbox" name="remember" checked /> 记住我</label>
           <a href="#" class="link">忘记密码？</a>
         </div>
         <button type="submit" class="btn-primary">🌳 进入森林</button>
@@ -54,16 +57,17 @@
       </form>
 
       <!-- 注册表单 -->
-      <form id="register-form" class="form" autocomplete="off">
+      <form id="register-form" class="form" autocomplete="off" novalidate>
         <label>取个森林昵称
-          <input type="text" name="nick" placeholder="你的专属昵称" required />
+          <input type="text" name="nick" placeholder="你的专属昵称" />
         </label>
         <label>设置密码
-          <input type="password" name="password" placeholder="至少6位" required />
+          <input type="password" name="password" placeholder="至少6位" />
         </label>
         <label>确认密码
-          <input type="password" name="confirm" placeholder="再输一次" required />
+          <input type="password" name="confirm" placeholder="再输一次" />
         </label>
+        <p class="form-msg" id="register-msg"></p>
         <button type="submit" class="btn-primary">🐾 加入狗熊岭</button>
       </form>
     </div>

@@ -1,0 +1,136 @@
+/* ===== 熊出没森林乐园 · 全局样式（由原生 styles.css 迁移） ===== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --bg1:#a8e063; --bg2:#56ab2f; --bg3:#2e7d32;
+  --card:#fffdf5; --border:#8d6e63; --primary:#7cb342; --primary2:#558b2f;
+  --text:#3a2e1f; --muted:#8d6e63; --accent:#ef6c00;
+  background: linear-gradient(160deg, var(--bg1), var(--bg2) 60%, var(--bg3));
+  background-size: 200% 200%;
+  animation: bgShift 12s ease infinite;
+  min-height: 100vh; color: var(--text); overflow-x: hidden;
+  transition: background .6s ease, color .6s ease;
+}
+@keyframes bgShift { 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
+.hidden { display: none !important; }
+
+/* 主题：黄昏 */
+body[data-theme="sunset"]{ --bg1:#ffd194; --bg2:#ff9a56; --bg3:#ff6a88; --card:#fff6ef; --border:#d99873; --primary:#ff8c42; --primary2:#e8590c; --text:#4a2c1a; --muted:#b07a52; --accent:#d6336c; }
+/* 主题：星夜 */
+body[data-theme="night"]{ --bg1:#0f2027; --bg2:#203a43; --bg3:#2c5364; --card:#1c2b33; --border:#3d5a64; --primary:#4dd0e1; --primary2:#0097a7; --text:#e0f7fa; --muted:#7fb0bb; --accent:#ffd54f; }
+/* 主题：樱花 */
+body[data-theme="cherry"]{ --bg1:#ffd9e8; --bg2:#ffb3d1; --bg3:#ff8fb3; --card:#fff5f9; --border:#e89bbd; --primary:#ff7eb3; --primary2:#e75480; --text:#7a2e4d; --muted:#c77a9b; --accent:#d6336c; }
+/* 主题：雪夜 */
+body[data-theme="snow"]{ --bg1:#e8f4fb; --bg2:#bcdcef; --bg3:#8fb8d6; --card:#f7fcff; --border:#9cc3dd; --primary:#5b9bd5; --primary2:#2e75b6; --text:#234a63; --muted:#6b94ad; --accent:#1f6fb2; }
+
+/* 漂浮树叶 / 星星 */
+.leaves { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.leaves span {
+  position: absolute; top: -40px; font-size: 26px; opacity: .7;
+  animation: fall linear infinite;
+}
+.leaves span:nth-child(1){ left: 10%; animation-duration: 9s; }
+.leaves span:nth-child(2){ left: 30%; animation-duration: 12s; animation-delay: 2s; }
+.leaves span:nth-child(3){ left: 55%; animation-duration: 10s; animation-delay: 1s; }
+.leaves span:nth-child(4){ left: 75%; animation-duration: 13s; animation-delay: 3s; }
+.leaves span:nth-child(5){ left: 90%; animation-duration: 11s; animation-delay: .5s; }
+@keyframes fall {
+  0% { transform: translateY(-40px) rotate(0); }
+  100% { transform: translateY(105vh) rotate(360deg); }
+}
+
+/* 登录卡片 */
+.auth-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; position: relative; z-index: 1; }
+.auth-card {
+  width: 100%; max-width: 380px; background: var(--card);
+  border: 4px solid var(--border); border-radius: 22px; padding: 28px 26px 32px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.25); text-align: center;
+  animation: cardIn .6s cubic-bezier(.18,.89,.32,1.28);
+}
+@keyframes cardIn { from{ opacity:0; transform: translateY(30px) scale(.95);} to{ opacity:1; transform:none; } }
+
+.bears { display: flex; justify-content: center; gap: 18px; margin-top: -50px; margin-bottom: 6px; }
+.bear { font-size: 46px; filter: drop-shadow(0 4px 4px rgba(0,0,0,.2)); animation: bob 2.4s ease-in-out infinite; }
+.bear-small { animation-delay: .6s; }
+@keyframes bob { 0%,100%{ transform: translateY(0) rotate(-6deg);} 50%{ transform: translateY(-10px) rotate(-6deg);} }
+.bear-small { animation-name: bob2; }
+@keyframes bob2 { 0%,100%{ transform: translateY(0) rotate(6deg) scale(.85);} 50%{ transform: translateY(-10px) rotate(6deg) scale(.85);} }
+
+.brand h1 { font-size: 21px; color: var(--primary2); }
+.slogan { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* 主题切换 */
+.theme-switch { display: flex; gap: 8px; justify-content: center; margin: 14px 0 4px; flex-wrap: wrap; }
+.theme-btn {
+  border: 2px solid var(--border); background: transparent; color: var(--muted);
+  padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: .2s;
+}
+.theme-btn.active { background: var(--primary); border-color: var(--primary2); color: #fff; }
+
+.tabs { display: flex; gap: 8px; margin: 14px 0; }
+.tab {
+  flex: 1; padding: 10px; border: 2px solid var(--border); background: transparent;
+  border-radius: 12px; cursor: pointer; font-size: 15px; color: var(--muted); transition: .2s;
+}
+.tab.active { background: var(--primary); border-color: var(--primary2); color: #fff; font-weight: 700; }
+
+.form { display: none; flex-direction: column; gap: 13px; text-align: left; animation: fade .3s ease; }
+.form.active { display: flex; }
+@keyframes fade { from{ opacity:0; transform: translateX(8px);} to{ opacity:1; transform:none; } }
+label { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+input {
+  padding: 11px 13px; border: 2px solid var(--border); border-radius: 10px;
+  font-size: 14px; outline: none; background: transparent; color: var(--text); transition: .2s;
+}
+input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(124,179,66,.25); }
+input.input-error { border-color: #e53935; box-shadow: 0 0 0 3px rgba(229,57,53,.18); animation: shake .3s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+.form-msg { font-size: 12px; color: #e53935; min-height: 16px; margin: -4px 0 2px; text-align: left; }
+.form-msg.ok { color: #43a047; }
+
+.row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.remember { flex-direction: row; align-items: center; gap: 6px; color: var(--muted); }
+.link { color: var(--accent); text-decoration: none; }
+
+.btn-primary {
+  margin-top: 6px; padding: 12px; border: none; border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary2)); color: #fff;
+  font-size: 16px; font-weight: 700; cursor: pointer; transition: .2s;
+  box-shadow: 0 6px 14px rgba(0,0,0,.2);
+}
+.btn-primary:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.06); }
+.btn-primary:active { transform: scale(.98); }
+.hint { font-size: 12px; color: var(--muted); text-align: center; }
+
+/* 首页 */
+.home-wrap { min-height: 100vh; }
+.home-header {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--primary2); color: #fff; padding: 14px 24px;
+}
+.home-brand { font-size: 20px; font-weight: 700; }
+.home-user { display: flex; align-items: center; gap: 14px; }
+.btn-logout {
+  background: var(--primary); border: none; color: #fff; padding: 6px 14px;
+  border-radius: 20px; cursor: pointer; font-weight: 600;
+}
+.home-main { max-width: 760px; margin: 0 auto; padding: 40px 20px; }
+.scene {
+  background: var(--card); border: 4px solid var(--border); border-radius: 22px;
+  padding: 40px 24px; text-align: center; box-shadow: 0 18px 40px rgba(0,0,0,.2);
+  animation: cardIn .6s ease;
+}
+.scene-emoji { font-size: 38px; letter-spacing: 4px; margin-bottom: 14px; animation: bob 3s ease-in-out infinite; }
+.scene h2 { color: var(--primary2); margin-bottom: 10px; }
+.scene p { color: var(--muted); font-size: 15px; margin-bottom: 22px; }
+.actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.fun-btn {
+  padding: 10px 18px; border: 2px solid var(--border); background: transparent; color: var(--text);
+  border-radius: 24px; cursor: pointer; font-size: 14px; transition: .2s;
+}
+.fun-btn:hover { background: var(--primary); border-color: var(--primary2); color: #fff; transform: translateY(-2px); }
+
+/* 首页标题入场动画（迁移自 app.js 注入的 keyframes） */
+@keyframes pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .5s ease}
